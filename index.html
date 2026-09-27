@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f8f7"><title>همیار | دانش‌یار سازمانی</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<section class="auth-gate" id="authGate" aria-label="ورود امن به همیار">
+  <div class="auth-visual">
+    <div class="auth-brand"><span class="brand-mark"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5 42 15.5v17L24 43 6 32.5v-17L24 5Z"/><path d="M24 13v22M13 19.5l22 9M35 19.5l-22 9"/><circle cx="24" cy="24" r="4"/></svg></span><span><b>همیار</b><small>دانش‌یار سازمانی</small></span></div>
+    <div class="visual-content"><span class="visual-kicker"><i></i> فضای امن دانشی سازمان</span><h1>دانش سازمان،<br><em>همیشه در دسترس.</em></h1><p>دسترسی یکپارچه به بخشنامه‌ها، دستورالعمل‌ها و تجربه‌های سازمانی؛ فقط برای کاربران مجاز.</p>
+      <div class="visual-orbit"><div class="orbit-line orbit-one"></div><div class="orbit-line orbit-two"></div><div class="orbit-core">هـ</div><span class="orbit-node node-one">▤</span><span class="orbit-node node-two">✳</span><span class="orbit-node node-three">✓</span><span class="orbit-node node-four">↗</span><div class="orbit-caption"><b>دانش‌یار هوشمند</b><span>محلی · مستند · سازمانی</span></div></div>
+    </div>
+    <div class="auth-visual-footer"><span>● داده‌ها روی زیرساخت سازمان می‌مانند</span><span>خراسان رضوی <i>·</i> دسترسی سازمانی</span></div>
+  </div>
+  <div class="auth-side"><div class="auth-side-top"><span class="mobile-brand">همیار <small>دانش‌یار سازمانی</small></span><span class="secure-label"><i></i> اتصال امن سازمانی</span></div>
+    <div class="auth-card" id="authCard"><div class="auth-card-mark">✳</div><div class="auth-overline">به فضای کاری خود خوش آمدید</div><h2 id="authTitle">ورود به حساب کاربری</h2><p class="auth-intro" id="authIntro">برای دسترسی به اسناد و پاسخ‌های سازمانی، هویت خود را تأیید کنید.</p><div class="preview-warning" id="previewWarning" hidden>پیش‌نمایش توسعه: کد OTP آزمایشی در همین صفحه نمایش داده می‌شود. این تنظیم برای محیط عملیاتی ناامن است.</div>
+      <div class="auth-tabs" id="authTabs"><button type="button" class="selected" data-auth-tab="login">ورود</button><button type="button" data-auth-tab="signup">ساخت حساب</button></div>
+      <button class="google-button" id="googleSignIn" type="button"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5Z" transform="translate(0 1) scale(1)"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.9c-.58 2.96-2.26 5.48-4.75 7.18l7.73 6C44.39 38.02 46.98 31.95 46.98 24.55Z"/><path fill="#FBBC05" d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.2A23.93 23.93 0 0 0 0 24c0 3.87.93 7.52 2.56 10.78l7.97-6.19Z" transform="translate(0 1)"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.9-5.8l-7.73-6c-2.14 1.44-4.88 2.3-8.17 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.2C6.51 42.62 14.62 48 24 48Z" transform="translate(0 -1)"/></svg><span>ادامه با حساب گوگل</span><span class="google-arrow">←</span></button>
+      <div class="provider-note" id="googleNote" hidden>برای فعال‌شدن ورود گوگل، OAuth Client و نشانی بازگشت دامنهٔ سازمان باید روی سرور ثبت شوند.</div>
+      <div class="auth-divider"><span>یا با شماره همراه</span></div>
+      <form id="phoneForm" novalidate>
+        <div class="field-group" id="identityFields"><label for="fullName">نام و نام خانوادگی</label><div class="input-wrap"><span>◉</span><input id="fullName" autocomplete="name" placeholder="مثلاً مریم رضایی" maxlength="100"></div><label for="municipality">شهرداری یا واحد سازمانی</label><div class="input-wrap"><span>⌂</span><input id="municipality" autocomplete="organization" placeholder="مثلاً شهرداری نیشابور" maxlength="100"></div></div>
+        <label for="phoneInput">شمارهٔ همراه</label><div class="input-wrap phone-wrap"><span class="phone-symbol">▯</span><input id="phoneInput" dir="ltr" inputmode="tel" autocomplete="tel" placeholder="۹۱۲ ۱۲۳ ۴۵۶۷" maxlength="20" required><span class="country-code">+۹۸</span></div><div class="field-note">کد تأیید یک‌بارمصرف برای شمارهٔ شما ارسال می‌شود.</div><div class="provider-note" id="smsNote" hidden>برای پیامک واقعی، درگاه پیامکی سازمان باید روی سرور پیکربندی شود.</div>
+        <div class="field-group otp-group" id="otpFields" hidden><label for="otpInput">کد تأیید شش‌رقمی</label><div class="input-wrap otp-wrap"><span>✳</span><input id="otpInput" dir="ltr" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="ــــــ"></div><div class="otp-row"><div class="otp-timer" id="otpHint">کد تا ۵ دقیقه معتبر است.</div><button type="button" class="resend-otp" id="resendOtp">ارسال دوبارهٔ کد</button></div></div>
+        <div class="auth-error" id="authError" role="alert" hidden></div><button class="auth-submit" id="authSubmit" type="submit"><span>ارسال کد تأیید</span><b>←</b></button>
+      </form>
+      <div class="dev-code" id="devCode" hidden></div><div class="account-pending" id="authPending" hidden><b id="pendingTitle">درخواست دسترسی ثبت شد</b><span id="pendingMessage">حساب شما پس از تأیید مدیر فعال می‌شود.</span><button type="button" class="pending-logout" id="pendingLogout">خروج از حساب</button></div><div class="auth-consent">اطلاعات حساب مطابق سیاست‌های امنیتی سازمان نگهداری می‌شود؛ پیش از استفادهٔ عملیاتی، متن سیاست مصوب سازمان باید در این بخش درج شود.</div>
+    </div>
+    <div class="auth-side-footer"><span>© سازمان همیاری شهرداری‌های خراسان رضوی</span><span>سامانهٔ داخلی <i>·</i> نسخهٔ آزمایشی</span></div>
+  </div>
+</section>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#dashboard" aria-label="صفحه اصلی">
+      <span class="brand-mark"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5 42 15.5v17L24 43 6 32.5v-17L24 5Z"/><path d="M24 13v22M13 19.5l22 9M35 19.5l-22 9"/><circle cx="24" cy="24" r="4"/></svg></span>
+      <span><b>همیار</b><small>دانش‌یار سازمانی</small></span>
+    </a>
+    <div class="workspace-label">فضای کاری</div>
+    <div class="org-switch"><span class="org-emblem">هـ</span><span><b>سازمان همیاری شهرداری‌ها</b><small>خراسان رضوی</small></span><span class="chevron">⌄</span></div>
+    <div class="nav-label">منوی اصلی</div>
+    <nav class="nav-list">
+      <a href="#dashboard" class="nav-item active" data-page="dashboard"><span class="nav-icon">▦</span>نمای کلی</a>
+      <a href="#chat" class="nav-item" data-page="chat"><span class="nav-icon">✳</span>گفت‌وگو با اسناد <span class="nav-badge">AI</span></a>
+      <a href="#documents" class="nav-item" data-page="documents"><span class="nav-icon">▤</span>کتابخانه اسناد <span class="nav-count" id="navDocCount">۰</span></a>
+      <a href="#learning" class="nav-item" data-page="learning"><span class="nav-icon">↗</span>یادگیری و بازخورد</a>
+      <a href="#users" class="nav-item admin-only" data-page="users" id="usersNav" hidden><span class="nav-icon">♧</span>کاربران و دسترسی‌ها</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="privacy-card"><span class="lock-icon">♧</span><div><b>اطلاعات شما محرمانه است</b><p>اسناد روی همین سرور می‌مانند و به وب ارسال نمی‌شوند.</p></div></div>
+      <div class="profile"><div class="avatar" id="profileAvatar">م‌</div><div class="profile-info"><b id="profileName">کاربر سازمانی</b><small id="profileRole">دسترسی سازمانی</small></div><button class="more-btn" id="logoutBtn" title="خروج امن" aria-label="خروج">⇥</button></div>
+    </div>
+  </aside>
+  <main class="main-area">
+    <header class="topbar"><button class="mobile-menu" id="mobileMenu" aria-label="باز کردن منو">☰</button><div class="breadcrumbs"><span>سازمان همیاری شهرداری‌ها</span><i>/</i><b id="crumb">نمای کلی</b></div><div class="top-actions"><span class="local-pill"><i></i><span id="connectionText">در حال بررسی وضعیت...</span></span><button class="icon-button" title="راهنما" id="helpBtn">؟</button><div class="mini-avatar" id="headerAvatar">م‌</div></div></header>
+    <section class="page active" id="page-dashboard">
+      <div class="welcome-row"><div><div class="eyebrow"><span class="sparkle">✳</span> دستیار دانشی سازمان شما</div><h1>سلام، <span id="greetingName">خوش آمدید</span> <span class="wave">✦</span></h1><p class="subhead">بخشنامه‌ها و دستورالعمل‌های سازمان را یک‌جا مدیریت کنید و پاسخ مستند بگیرید.</p></div><button class="btn btn-primary" data-go="documents"><span>＋</span> افزودن سند</button></div>
+      <div class="status-banner"><div class="status-symbol">◉</div><div class="status-copy"><b id="aiStatusTitle">سامانه آماده استفاده است</b><span id="aiStatusBody">اسناد خود را اضافه کنید تا جست‌وجوی دانشی آغاز شود.</span></div><span class="status-chip" id="aiStatusChip">آفلاین‌محور</span></div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-top"><span>اسناد کتابخانه</span><span class="stat-icon mint">▤</span></div><div class="stat-value" id="statDocs">۰</div><div class="stat-foot">بخشنامه، آیین‌نامه و دستورالعمل</div><div class="stat-bar"><i></i></div></article>
+        <article class="stat-card"><div class="stat-top"><span>پرسش‌های این هفته</span><span class="stat-icon lavender">✳</span></div><div class="stat-value" id="statQuestions">۰</div><div class="stat-foot">گفت‌وگوهای انجام‌شده در این مرورگر</div><div class="stat-bar purple"><i></i></div></article>
+        <article class="stat-card"><div class="stat-top"><span>بازخوردهای ثبت‌شده</span><span class="stat-icon peach">↗</span></div><div class="stat-value" id="statFeedback">۰</div><div class="stat-foot">برای بهبود پاسخ‌گویی آینده</div><div class="stat-bar orange"><i></i></div></article>
+      </div>
+      <div class="dashboard-grid">
+        <section class="panel quick-panel"><div class="panel-heading"><div><h2>از همیار بپرسید</h2><p>پاسخ‌ها بر پایه اسناد بارگذاری‌شده ارائه می‌شوند.</p></div><span class="assistant-orb">✳</span></div><div class="suggestion-list"><button class="suggestion" data-question="آخرین مهلت ارسال گزارش‌های شهرداری‌ها چه زمانی است؟"><span>آخرین مهلت ارسال گزارش‌های شهرداری‌ها چه زمانی است؟</span><b>←</b></button><button class="suggestion" data-question="شرایط و مراحل دریافت تسهیلات چیست؟"><span>شرایط و مراحل دریافت تسهیلات چیست؟</span><b>←</b></button><button class="suggestion" data-question="مدارک لازم برای درخواست خرید چیست؟"><span>مدارک لازم برای درخواست خرید چیست؟</span><b>←</b></button></div><button class="text-link" data-go="chat">شروع گفت‌وگوی جدید <span>←</span></button></section>
+        <section class="panel documents-panel"><div class="panel-heading"><div><h2>اسناد اخیر</h2><p>آخرین فایل‌های اضافه‌شده به دانش‌یار</p></div><button class="plain-link" data-go="documents">مشاهده همه ←</button></div><div id="recentDocs" class="recent-list"><div class="empty-inline"><span class="empty-icon">▤</span><b>هنوز سندی ندارید</b><span>اولین فایل را به کتابخانه اضافه کنید.</span><button class="btn btn-soft" data-go="documents">＋ افزودن سند</button></div></div></section>
+      </div>
+      <div class="bottom-note"><span>ⓘ</span><div><b>پاسخ قابل استناد، تصمیم مطمئن</b><p>همیار به شما کمک می‌کند بندهای مرتبط را سریع پیدا کنید. برای تصمیم اداری، همیشه متن اصلی و آخرین نسخه سند را بررسی کنید.</p></div></div>
+    </section>
+    <section class="page" id="page-documents">
+      <div class="page-heading"><div><div class="eyebrow">مدیریت دانش سازمانی</div><h1>کتابخانه اسناد</h1><p class="subhead">منابع معتبر پاسخ‌گویی را بارگذاری و مدیریت کنید.</p></div><button class="btn btn-primary" id="uploadTop"><span>＋</span> بارگذاری سند</button></div>
+      <div class="doc-toolbar"><div class="search-field"><span>⌕</span><input id="docSearch" placeholder="جست‌وجو در نام اسناد..." aria-label="جست‌وجو"></div><div class="filter-select">همه دسته‌ها <span>⌄</span></div><span class="doc-total" id="docTotal">۰ سند</span></div>
+      <div id="uploadManagerPanel">
+      <div class="upload-zone" id="dropZone"><input type="file" id="fileInput" accept=".txt,.md,.csv,.json,.log,.html" multiple hidden><div class="upload-icon">↑</div><div><b>فایل‌ها را اینجا رها کنید یا <button id="browseBtn" class="inline-button">انتخاب کنید</button></b><p>فرمت‌های متنی TXT، MD، CSV، JSON و HTML · حداکثر ۱۲ مگابایت برای هر سند</p></div><span class="upload-tag">ذخیره محلی</span></div>
+      <div class="scope-row manager-only" id="scopeRow" hidden><label for="documentScope">سطح دسترسی فایل‌های جدید</label><select id="documentScope"><option value="global">دسترسی سازمانی — همه شهرداری‌ها</option><option value="local">فقط شهرداری یا واحد خودم</option><option value="custom">محدود به شهرداری انتخابی</option></select><input id="municipalityTarget" placeholder="نام دقیق شهرداری" maxlength="100" hidden><span>فایل‌های سازمانی برای کاربران تأییدشده قابل جست‌وجو هستند.</span></div>
+      </div>
+      <div class="readonly-docs-note" id="documentReadOnly" hidden>مشاهده و جست‌وجوی اسناد برای حساب فعال شما مجاز است؛ برای افزودن یا حذف سند با مدیر دانش واحد خود تماس بگیرید.</div>
+      <div class="format-notice"><span>ⓘ</span><span>فایل‌ها روی سرور داخلی ذخیره می‌شوند. برای پردازش PDF و Word، در نسخه سازمانی باید مبدل‌های آفلاین متن نصب شود.</span></div>
+      <div class="table-card"><div class="table-heading"><b>اسناد شما</b><span id="tableCount">۰ مورد</span></div><div class="table-wrap"><table><thead><tr><th>نام سند</th><th>حجم</th><th>تاریخ افزودن</th><th>وضعیت</th><th></th></tr></thead><tbody id="docRows"><tr><td colspan="5" class="table-empty">کتابخانه خالی است؛ اولین سند را بارگذاری کنید.</td></tr></tbody></table></div></div>
+    </section>
+    <section class="page" id="page-chat">
+      <div class="chat-layout"><div class="chat-main"><div class="page-heading chat-heading"><div><div class="eyebrow"><span class="online-dot"></span> دستیار اسناد سازمانی</div><h1>گفت‌وگو با اسناد</h1><p class="subhead">پرسش خود را بپرسید؛ همیار منابع مرتبط را پیدا می‌کند.</p></div><button class="new-chat" id="newChat">＋ گفت‌وگوی تازه</button></div>
+        <div class="chat-content" id="chatContent"><div class="chat-welcome"><div class="welcome-orb"><span>✳</span></div><h2>چه چیزی می‌خواهید بدانید؟</h2><p>پاسخ‌ها از متن اسناد داخلی شما جست‌وجو می‌شوند و همراه منبع نمایش داده خواهند شد.</p><div class="chat-suggestions"><button data-question="شرایط و مراحل دریافت تسهیلات چیست؟">شرایط دریافت تسهیلات <span>↖</span></button><button data-question="آخرین مهلت ارسال گزارش‌ها چه زمانی است؟">مهلت ارسال گزارش‌ها <span>↖</span></button><button data-question="چه مدارکی برای درخواست لازم است؟">مدارک موردنیاز <span>↖</span></button></div></div></div>
+        <div class="composer"><textarea id="questionInput" rows="1" placeholder="پرسش خود را درباره بخشنامه‌ها بنویسید..." aria-label="پرسش شما"></textarea><div class="composer-footer"><span class="composer-hint"><span>⌘</span> پاسخ فقط بر اساس اسناد داخلی</span><button id="sendBtn" class="send-button" aria-label="ارسال پرسش">↑</button></div></div><div class="disclaimer">همیار ممکن است اشتباه کند. پیش از اقدام، به متن اصلی سند مراجعه کنید.</div></div>
+        <aside class="chat-side"><div class="side-card"><div class="side-title"><span class="side-title-icon">▤</span><div><b>منابع جست‌وجو</b><small>جست‌وجو در همه اسناد</small></div><span class="source-count" id="chatDocCount">۰</span></div><div class="sources-mini" id="chatSourcesList"><div class="source-placeholder">با افزودن اسناد، منابع اینجا نمایش داده می‌شوند.</div></div><button class="side-action" data-go="documents">مدیریت کتابخانه ←</button></div><div class="side-tip"><span>✦</span><b>پاسخ دقیق‌تر بگیرید</b><p>نام شهرداری، شماره بخشنامه یا موضوع موردنظر را در پرسش بنویسید.</p></div></aside></div>
+    </section>
+    <section class="page" id="page-learning">
+      <div class="page-heading"><div><div class="eyebrow">بهبود مستمر و کنترل‌شده</div><h1>یادگیری و بازخورد</h1><p class="subhead">با ثبت اصلاحات، پاسخ‌های آینده را دقیق‌تر و متناسب‌تر کنید.</p></div></div>
+      <div class="learning-banner"><div class="learning-illustration">↗</div><div><b>یادگیری شفاف، با نظارت شما</b><p>بازخوردها به‌عنوان راهنمای پاسخ‌گویی نگهداری می‌شوند؛ مدل به‌صورت خودکار آموزش مجدد نمی‌بیند و بخشنامه رسمی را تغییر نمی‌دهد.</p></div></div>
+      <div class="learning-stats"><div class="panel learn-stat"><span class="stat-icon peach">↗</span><div><small>کل بازخوردها</small><b id="learnTotal">۰</b></div></div><div class="panel learn-stat"><span class="stat-icon mint">✓</span><div><small>پاسخ‌های مفید</small><b id="learnUp">۰</b></div></div><div class="panel learn-stat"><span class="stat-icon lavender">✎</span><div><small>اصلاحات ثبت‌شده</small><b id="learnCorrections">۰</b></div></div></div>
+      <div class="panel feedback-panel"><div class="panel-heading"><div><h2>بازخوردهای اخیر</h2><p>اصلاحات ثبت‌شده به دستیار محلی کمک می‌کند پاسخ‌های بعدی را بهتر تنظیم کند.</p></div></div><div id="feedbackList" class="feedback-list"><div class="empty-inline"><span class="empty-icon">↗</span><b>هنوز بازخوردی ثبت نشده</b><span>پس از هر پاسخ می‌توانید مفید بودن یا اصلاح پاسخ را ثبت کنید.</span></div></div></div>
+      <div class="learning-warning"><b>مهم:</b> پاسخ‌های اصلاح‌شده جایگزین اسناد مصوب نمی‌شوند. برای استفاده رسمی، سند معتبر را در کتابخانه به‌روزرسانی کنید.</div>
+    </section>
+    <section class="page" id="page-users">
+      <div class="page-heading"><div><div class="eyebrow">مدیریت هویت و دسترسی</div><h1>کاربران و دسترسی‌ها</h1><p class="subhead">عضویت را تأیید و دسترسی هر کاربر را متناسب با مسئولیتش تعیین کنید.</p></div><button class="btn btn-soft" id="refreshUsers">↻ تازه‌سازی</button></div>
+      <div class="learning-banner"><div class="learning-illustration">♧</div><div><b>دسترسی مبتنی بر نقش و شهرداری</b><p>حساب تازه تا تأیید مدیر در انتظار می‌ماند. اسناد با دامنهٔ سازمانی یا محدود به شهرداری قابل انتشار هستند.</p></div></div>
+      <div class="table-card user-table-card"><div class="table-heading"><b>حساب‌های سامانه</b><span id="usersCount">۰ کاربر</span></div><div class="table-wrap"><table><thead><tr><th>کاربر</th><th>شهرداری / واحد</th><th>نقش</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody id="userRows"><tr><td colspan="5" class="table-empty">در حال بارگذاری...</td></tr></tbody></table></div></div>
+      <div class="learning-warning"><b>اصل حداقل دسترسی:</b> فقط مدیر سامانه حساب‌ها را تأیید یا نقش آن‌ها را تغییر می‌دهد. دسترسی به اطلاعات باید با وظیفه و حوزهٔ سازمانی کاربر متناسب باشد.</div>
+    </section>
+    <footer class="app-footer"><span>همیار <i>·</i> نسخه آزمایشی داخلی</span><span>محلی و خصوصی <b>●</b></span></footer>
+  </main>
+</div>
+<div class="modal-backdrop" id="correctionModal"><div class="modal"><button class="modal-close" id="modalClose">×</button><div class="modal-symbol">✎</div><h2>پاسخ بهتر را ثبت کنید</h2><p>اصلاح شما به‌عنوان راهنما نگهداری می‌شود تا پاسخ‌های مشابه بهتر شوند.</p><label for="correctionText">پاسخ یا توضیح اصلاحی</label><textarea id="correctionText" rows="5" placeholder="پاسخ درست یا نکته مهم را بنویسید..."></textarea><button id="saveCorrection" class="btn btn-primary full-btn">ثبت بازخورد</button></div></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="/app.js" defer></script>
+</body></html>

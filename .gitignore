@@ -1,0 +1,5 @@
+# Local uploaded documents, answers and feedback contain internal information
+/data/*
+!/data/.gitkeep
+node_modules/
+.env
