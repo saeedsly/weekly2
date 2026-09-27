@@ -214,4 +214,5 @@ const server = http.createServer(async (req, res) => {
     return staticFile(req, res);
   } catch (error) { console.error(error); return send(res, 500, { error: 'خطای داخلی سامانه.' }); }
 });
-server.listen(PORT, '0.0.0.0', () => console.log(`HamYari local AI listening on http://0.0.0.0:${PORT}`));
+const HOST = process.env.HOST || '0.0.0.0';
+server.listen(PORT, HOST, () => console.log(`HamYari local AI listening on http://${HOST}:${PORT}`));

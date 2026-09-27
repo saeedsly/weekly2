@@ -59,6 +59,15 @@ test('OTP verifies, creates a bootstrap admin, and requires CSRF on writes', asy
   assert.equal(auth.authorize(safe, allow).id, session.user.id);
 });
 
+test('development preview auto-approves demo users without granting admin', async () => {
+  const db = createMemoryStore(); let code;
+  const auth = new Security({ readJson: db.read, saveJson: db.write, audit: () => {}, env: { NODE_ENV: 'test', AUTH_DEV_MODE: 'true', DEV_AUTO_APPROVE_USERS: 'true' } });
+  auth.sendSms = async (_phone, value) => { code = value; };
+  const sent = response(); await auth.requestOtp(request({ phone: '+989121234569' }), sent); const { challengeId } = sent.json();
+  const verified = response(); await auth.verifyOtp(request({ challengeId, phone: '+989121234569', code, name: 'کاربر دمو', municipality: 'شهرداری نمونه', role: 'system_admin' }), verified);
+  assert.equal(verified.json().user.role, 'municipality_member'); assert.equal(verified.json().user.status, 'active');
+});
+
 test('new users cannot choose their own privileged role and await approval', async () => {
   const db = createMemoryStore(); let code;
   const env = { NODE_ENV: 'test', SMS_GATEWAY_URL: 'https://sms.example.test/send', SMS_GATEWAY_TOKEN: 'dummy', ADMIN_BOOTSTRAP_PHONE: '+989121234567' };
@@ -66,6 +75,11 @@ test('new users cannot choose their own privileged role and await approval', asy
   let res = response(); await auth.requestOtp(request({ phone: '+989121234568' }), res); const challengeId = res.json().challengeId;
   res = response(); await auth.verifyOtp(request({ challengeId, phone: '+989121234568', code, name: 'کاربر شهرداری', municipality: 'نیشابور', role: 'system_admin' }), res);
   assert.equal(res.json().user.role, 'municipality_member'); assert.equal(res.json().user.status, 'pending');
+});
+
+test('production refuses demo auto-approval mode', () => {
+  const db = createMemoryStore();
+  assert.throws(() => new Security({ readJson: db.read, saveJson: db.write, audit: () => {}, env: { NODE_ENV: 'production', DEV_AUTO_APPROVE_USERS: 'true' } }), /DEV_AUTO_APPROVE_USERS is forbidden/);
 });
 
 test('production refuses to start without an encryption key', () => {

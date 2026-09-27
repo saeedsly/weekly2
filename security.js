@@ -40,9 +40,15 @@ class Security {
     this.sessionCookieName = env.AUTH_COOKIE_NAME || 'hy_session';
     this.dev = env.AUTH_DEV_MODE === 'true' && env.NODE_ENV !== 'production';
     if (env.NODE_ENV === 'production' && env.AUTH_DEV_MODE === 'true') throw new Error('AUTH_DEV_MODE is forbidden in production.');
+    if (env.NODE_ENV === 'production' && env.DEV_AUTO_APPROVE_USERS === 'true') throw new Error('DEV_AUTO_APPROVE_USERS is forbidden in production.');
     this.otpSecret = env.OTP_HMAC_SECRET || env.DATA_ENCRYPTION_KEY || crypto.randomBytes(32).toString('hex');
     this.challenges = new Map(); this.pendingGoogle = new Map(); this.oauthStates = new Map(); this.rate = new Map();
     this.jwks = null; this.jwksUntil = 0;
+    if (this.dev && env.DEV_AUTO_APPROVE_USERS === 'true') {
+      const users = this.users(); let changed = false;
+      for (const user of users) if (user.status === 'pending') { user.status = 'active'; changed = true; }
+      if (changed) this.saveJson('users.json', users);
+    }
   }
   users() { return this.readJson('users.json', []); }
   sessions() { return this.readJson('sessions.json', []); }
@@ -83,7 +89,7 @@ class Security {
       if (!r.ok) throw new Error('ارسال پیامک از درگاه سازمانی انجام نشد.');
     } finally { clearTimeout(timer); }
   }
-  config() { return { googleEnabled: Boolean(this.env.GOOGLE_CLIENT_ID && this.env.GOOGLE_CLIENT_SECRET && this.env.GOOGLE_REDIRECT_URI), phoneEnabled: this.dev || Boolean(this.env.SMS_GATEWAY_URL && this.env.SMS_GATEWAY_TOKEN), devMode: this.dev, production: this.env.NODE_ENV === 'production' }; }
+  config() { return { googleEnabled: Boolean(this.env.GOOGLE_CLIENT_ID && this.env.GOOGLE_CLIENT_SECRET && this.env.GOOGLE_REDIRECT_URI), phoneEnabled: this.dev || Boolean(this.env.SMS_GATEWAY_URL && this.env.SMS_GATEWAY_TOKEN), devMode: this.dev, devAutoApproval: this.dev && this.env.DEV_AUTO_APPROVE_USERS === 'true', production: this.env.NODE_ENV === 'production' }; }
   async requestOtp(req, res, googleKey = null) {
     if (!this.checkRate(req, 'otp-ip', 8, 15 * 60_000)) return json(res, 429, { error: 'درخواست‌های زیاد؛ چند دقیقه دیگر دوباره امتحان کنید.' });
     const data = await textBody(req); const phone = normalizePhone(data.phone);
@@ -153,7 +159,8 @@ class Security {
       if (!municipality) return json(res, 400, { error: 'نام شهرداری یا واحد سازمانی را وارد کنید.' });
       const firstDevAdmin = this.dev && this.env.ALLOW_FIRST_ADMIN === 'true' && !users.length;
       const admin = this.adminPhone(phone) || firstDevAdmin;
-      user = { id: crypto.randomUUID(), name, phone, municipality, role: admin ? 'system_admin' : 'municipality_member', status: admin ? 'active' : 'pending', createdAt: new Date().toISOString(), lastLoginAt: new Date().toISOString() };
+      const autoApprovedPreview = this.dev && this.env.DEV_AUTO_APPROVE_USERS === 'true';
+      user = { id: crypto.randomUUID(), name, phone, municipality, role: admin ? 'system_admin' : 'municipality_member', status: admin || autoApprovedPreview ? 'active' : 'pending', createdAt: new Date().toISOString(), lastLoginAt: new Date().toISOString() };
       users.push(user); this.saveJson('users.json', users); this.audit('signup', { userId: user.id, role: user.role, municipality }, req);
     } else {
       user.lastLoginAt = new Date().toISOString();
@@ -175,8 +182,8 @@ class Security {
       const name = String(data.name || pending.name || '').trim().slice(0, 100);
       const municipality = String(data.municipality || '').trim().slice(0, 100);
       if (!name || !municipality) return json(res, 400, { error: 'نام و نام شهرداری/واحد سازمانی لازم است.' });
-      const admin = this.adminPhone(phone);
-      user = { id: crypto.randomUUID(), name, phone, email: pending.email, googleSub: pending.sub, municipality, role: admin ? 'system_admin' : 'municipality_member', status: admin ? 'active' : 'pending', createdAt: new Date().toISOString(), lastLoginAt: new Date().toISOString() };
+      const admin = this.adminPhone(phone), autoApprovedPreview = this.dev && this.env.DEV_AUTO_APPROVE_USERS === 'true';
+      user = { id: crypto.randomUUID(), name, phone, email: pending.email, googleSub: pending.sub, municipality, role: admin ? 'system_admin' : 'municipality_member', status: admin || autoApprovedPreview ? 'active' : 'pending', createdAt: new Date().toISOString(), lastLoginAt: new Date().toISOString() };
       users.push(user);
     } else {
       user.email = pending.email; user.googleSub = pending.sub; user.lastLoginAt = new Date().toISOString();
